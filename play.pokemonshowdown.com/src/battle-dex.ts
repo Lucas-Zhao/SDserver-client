@@ -617,6 +617,7 @@ const Dex = new class implements ModdedDex {
 				spriteData.h *= 0.5;
 				spriteData.y += -11;
 			}
+			if(CustomPokemonIcons[species.id]) spriteData.url = Config.customspritesurl + species.id + ".png"
 			return spriteData;
 		}
 
@@ -675,6 +676,7 @@ const Dex = new class implements ModdedDex {
 			spriteData.y += -11;
 		}
 
+		if(CustomPokemonIcons[species.id]) spriteData.url = Config.customspritesurl + species.id + ".png"
 		return spriteData;
 	}
 
@@ -716,6 +718,7 @@ const Dex = new class implements ModdedDex {
 			return `background:transparent url(${Dex.resourcePrefix}sprites/pokemonicons-pokeball-sheet.png) no-repeat scroll -80px 4px`;
 		}
 
+		console.log("THIS WAS CALLED")
 		let id = toID(pokemon);
 		if (!pokemon || typeof pokemon === 'string') pokemon = null;
 		// @ts-ignore
@@ -732,6 +735,11 @@ const Dex = new class implements ModdedDex {
 		let top = Math.floor(num / 12) * 30;
 		let left = (num % 12) * 40;
 		let fainted = ((pokemon as Pokemon | ServerPokemon)?.fainted ? `;opacity:.3;filter:grayscale(100%) brightness(.5)` : ``);
+        if(!window.CustomPokemonIcons) {
+			window.CustomPokemonIcons = {}
+		}
+		if(window.CustomPokemonIcons[id] && Config.showCustomIcons) return `background:transparent url(${window.CustomPokemonIcons[id]}) no-repeat scroll -${left}px -${top}px${fainted}`;
+
 		return `background:transparent url(${Dex.resourcePrefix}sprites/pokemonicons-sheet.png?v17) no-repeat scroll -${left}px -${top}px${fainted}`;
 	}
 
@@ -779,6 +787,8 @@ const Dex = new class implements ModdedDex {
 				spriteData.x = -2;
 				spriteData.y = 0;
 			}
+						if(CustomPokemonIcons[species.id]) spriteData.url = Config.customspritesurl + species.id + ".png"
+
 			return spriteData;
 		}
 		spriteData.spriteDir = 'sprites/gen5';
@@ -795,6 +805,7 @@ const Dex = new class implements ModdedDex {
 		if (!pokemon) return '';
 		const data = this.getTeambuilderSpriteData(pokemon, gen);
 		const shiny = (data.shiny ? '-shiny' : '');
+		if(CustomPokemonIcons[toID(pokemon.species)]) return 'background-image:url(' + Config.customspritesurl + toID(pokemon.species) + '.png);background-position:' + data.x + 'px ' + data.y + 'px;background-repeat:no-repeat';
 		return 'background-image:url(' + Dex.resourcePrefix + data.spriteDir + shiny + '/' + data.spriteid + '.png);background-position:' + data.x + 'px ' + data.y + 'px;background-repeat:no-repeat';
 	}
 
@@ -855,6 +866,8 @@ class ModdedDex {
 	};
 	pokeballs: string[] | null = null;
 	constructor(modid: ID) {
+		if(!window.CustomPokemonIcons) window.CustomPokemonIcons = {}
+
 		this.modid = modid;
 		const gen = parseInt(modid.substr(3, 1), 10);
 		if (!modid.startsWith('gen') || !gen) throw new Error("Unsupported modid");

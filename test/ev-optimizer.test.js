@@ -2,6 +2,8 @@ const assert = require('assert').strict;
 
 try {
   global.BattlePokedex = require('../play.pokemonshowdown.com/data/pokedex.js').BattlePokedex;
+  global.CustomPokemonIcons = require('../play.pokemonshowdown.com/data/custom-icons.js').CustomPokemonIcons;
+
 } catch (err) {}
 require('../play.pokemonshowdown.com/js/battle-dex-data.js');
 require('../play.pokemonshowdown.com/js/battle-dex.js');

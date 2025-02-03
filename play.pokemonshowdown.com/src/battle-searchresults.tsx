@@ -41,6 +41,7 @@ class PSSearchResults extends preact.Component<{search: DexSearch}> {
 	}
 
 	renderPokemonRow(id: ID, matchStart: number, matchEnd: number, errorMessage?: preact.ComponentChildren) {
+		console.log("this was called!!")
 		const search = this.props.search;
 		const pokemon = search.dex.species.get(id);
 		if (!pokemon) return <li class="result">Unrecognized pokemon</li>;

@@ -12,8 +12,9 @@
 		<link rel="stylesheet" href="style/font-awesome.css" />
 		<meta name="robots" content="noindex" />
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-		<script src="https://play.pokemonshowdown.com/config/config.js"></script>
+		<script src="../config/config.js"></script>
 		<script>
+		
 			function loadRemoteData(src) {
 				var scriptEl = document.createElement('script');
 				scriptEl.src = src.replace(/.*\/?data\//g, 'https://play.pokemonshowdown.com/data/');
@@ -123,8 +124,10 @@
 		<script src="js/search.js"></script>
 
 		<script src="data/aliases.js" async="async" onerror="loadRemoteData(this.src)"></script>
+		<script src="data/customs/custom-icons.js" onerror="() => console.log('failed to load custom pokemon icons')"></script>
 
 		<script>
+	
 			window.onload = () => {
 				window.app = new App();
 			}

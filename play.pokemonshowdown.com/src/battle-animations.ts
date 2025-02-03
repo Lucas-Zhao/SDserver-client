@@ -1098,6 +1098,7 @@ export class BattleScene implements BattleSceneStub {
 			opacity: 0,
 		}, this, pokemon.side.isFar);
 		if (sprite.$el) this.$sprites[+pokemon.side.isFar].append(sprite.$el);
+	
 		return sprite;
 	}
 
