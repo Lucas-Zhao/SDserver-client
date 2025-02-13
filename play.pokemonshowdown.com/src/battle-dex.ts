@@ -676,7 +676,10 @@ const Dex = new class implements ModdedDex {
 			spriteData.y += -11;
 		}
 
-		if(CustomPokemonIcons[species.id]) spriteData.url = Config.customspritesurl + species.id + ".png"
+		if(CustomPokemonIcons[species.id]) {
+			//if(!spriteData.isFrontSprite) spriteData.url = Config.customspritesurl + species.id + "-back.png"
+			spriteData.url = Config.customspritesurl + species.id + `${!spriteData.isFrontSprite ? "-back" : ""}${spriteData.shiny ? "-shiny" : ""}.png`
+		}
 		return spriteData;
 	}
 
@@ -969,6 +972,7 @@ class ModdedDex {
 	species = {
 		get: (name: string): Species => {
 			let id = toID(name);
+			console.log(id)
 			if (window.BattleAliases && id in BattleAliases) {
 				name = BattleAliases[id];
 				id = toID(name);
@@ -1005,6 +1009,7 @@ class ModdedDex {
 
 			const species = new Species(id, name, data);
 			this.cache.Species[id] = species;
+			console.log("CALLEDD")
 			return species;
 		},
 	};

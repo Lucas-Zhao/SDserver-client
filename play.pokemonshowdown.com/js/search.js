@@ -198,6 +198,7 @@
 			return this.renderMoveSortRow();
 		case 'pokemon':
 			var pokemon = this.engine.dex.species.get(id);
+			console.log(room.curTeam.format)
 			return this.renderPokemonRow(pokemon, matchStart, matchLength, errorMessage, attrs);
 		case 'move':
 			var move = this.engine.dex.moves.get(id);
@@ -293,6 +294,8 @@
 		if (!attrs) attrs = '';
 		if (!pokemon) return '<li class="result">Unrecognized pokemon</li>';
 		var id = toID(pokemon.name);
+		//if(id.includes("mega"))
+		console.log(pokemon)
 		if (Search.urlRoot) attrs += ' href="' + Search.urlRoot + 'pokemon/' + id + '" data-target="push"';
 		var buf = '<li class="result"><a' + attrs + ' data-entry="pokemon|' + BattleLog.escapeHTML(pokemon.name) + '">';
 
@@ -327,7 +330,12 @@
 		buf += '<span class="col pokemonnamecol">' + name + '</span> ';
 
 		// error
-		if (errorMessage) {
+		function isLegacyLegal() {
+			var format = room.curTeam.format;
+			if(toID(pokemon.tier) == "legacy" && format.includes("legacy")) return true;
+			return false;
+		}
+		if (errorMessage && !isLegacyLegal()) {
 			buf += errorMessage + '</a></li>';
 			return buf;
 		}

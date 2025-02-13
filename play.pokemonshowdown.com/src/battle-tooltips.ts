@@ -1100,6 +1100,9 @@ class BattleTooltips {
 		if (ability === 'purepower' || ability === 'hugepower') {
 			stats.atk *= 2;
 		}
+		if (ability === 'arcanemight') {
+			stats.atk *= 2;
+		}
 		if (ability === 'hustle' || (ability === 'gorillatactics' && !clientPokemon?.volatiles['dynamax'])) {
 			stats.atk = Math.floor(stats.atk * 1.5);
 		}
@@ -1245,6 +1248,11 @@ class BattleTooltips {
 		if (this.battle.abilityActive('Sword of Ruin')) {
 			if (ability !== 'swordofruin') {
 				stats.def = Math.floor(stats.def * 0.75);
+			}
+		}
+		if (this.battle.abilityActive('Acceleration of Ruin')) {
+			if (ability !== 'accelerationofruin') {
+				stats.spe = Math.floor(stats.spe * 0.75);
 			}
 		}
 		if (this.battle.abilityActive('Tablets of Ruin')) {

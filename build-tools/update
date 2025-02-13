@@ -77,7 +77,7 @@ process.stdout.write("Compiling TS files... ");
 let compileStartTime = process.hrtime();
 let compiledFiles = 0;
 
-// Babel can't find babelrc if we try to compile stuff in caches/pokemon-showdown/ fsr
+// Babel can't find babelrc if we try to compile stuff in caches/ps-custom-mega-server/ fsr
 let compileOpts = Object.assign(eval('(' + fs.readFileSync('.babelrc') + ')'), {
 	babelrc: false,
 	incremental: true,
@@ -86,7 +86,7 @@ let compileOpts = Object.assign(eval('(' + fs.readFileSync('.babelrc') + ')'), {
 if (process.argv[2] === 'full') {
 	delete compileOpts.ignore;
 	compiler.compileToDir(
-		['caches/pokemon-showdown/server/chat-formatter.ts'],
+		['caches/ps-custom-mega-server/server/chat-formatter.ts'],
 		'play.pokemonshowdown.com/js/server/',
 		compileOpts
 	);
@@ -108,7 +108,7 @@ compiledFiles += compiler.compileToFile(
 		'play.pokemonshowdown.com/src/battle-dex-data.ts',
 		'play.pokemonshowdown.com/src/battle-log.ts',
 		'play.pokemonshowdown.com/src/battle-log-misc.js',
-		'caches/pokemon-showdown/server/chat-formatter.ts',
+		'caches/ps-custom-mega-server/server/chat-formatter.ts',
 		'play.pokemonshowdown.com/data/text.js',
 		'play.pokemonshowdown.com/src/battle-text-parser.ts',
 	],

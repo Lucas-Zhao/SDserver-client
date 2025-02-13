@@ -684,6 +684,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			this.baseResults = this.getBaseResults();
 		}
 
+		console.log(this.baseIllegalResults)
 		if (!this.baseIllegalResults) {
 			const legalityFilter: {[id: string]: 1} = {};
 			for (const [resultType, value] of this.baseResults) {
@@ -947,8 +948,11 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		let isDoublesOrBS = isVGCOrBS || this.formatType?.includes('doubles');
 		const dex = this.dex;
 
+
 		let table = BattleTeambuilderTable;
-		if ((format.endsWith('cap') || format.endsWith('caplc')) && dex.gen < 9) {
+		if(format.includes("Legacy")) table = table["Legacy"]
+
+		else if ((format.endsWith('cap') || format.endsWith('caplc')) && dex.gen < 9) {
 			table = table['gen' + dex.gen];
 		} else if (isVGCOrBS) {
 			table = table['gen' + dex.gen + 'vgc'];

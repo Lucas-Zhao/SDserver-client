@@ -1506,6 +1506,7 @@ class Species implements Effect {
 	readonly changesFrom: string | undefined;
 
 	constructor(id: ID, name: string, data: any) {
+		if(id == "lucariomegax") alert(JSON.stringify(data))
 		if (!data || typeof data !== 'object') data = {};
 		if (data.name) name = data.name;
 		this.name = Dex.sanitizeName(name);

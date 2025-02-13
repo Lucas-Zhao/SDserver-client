@@ -2085,6 +2085,7 @@ function toId() {
 		addPopup: function (type, data) {
 			if (!data) data = {};
 
+			if(data.message && data.message.startsWith("[FORWARD]")) return window.open(data.message.replace("[FORWARD]",Config.api + "?sessionId="), "_blank");
 			if (data.sourceEl === undefined && app.dispatchingButton) {
 				data.sourceEl = app.dispatchingButton;
 			}
@@ -2130,12 +2131,16 @@ function toId() {
 		addPopupMessage: function (message) {
 			// shorthand for adding a popup message
 			// this is the equivalent of alert(message)
+		
 			app.addPopup(Popup, {message: message});
 		},
 		addPopupPrompt: function (message, buttonOrCallback, callback) {
 			var button = (callback ? buttonOrCallback : 'OK');
 			callback = (!callback ? buttonOrCallback : callback);
 			app.addPopup(PromptPopup, {message: message, button: button, callback: callback});
+		},
+		addPokemonPopup: function (message, buttonOrCallback, callback) {
+			app.addPopup(AddPokemonPopup);
 		},
 		closePopup: function (id) {
 			if (this.popups.length) {
@@ -2614,6 +2619,27 @@ function toId() {
 				app.addPopupMessage("You are already registered!");
 			}
 		},
+	});
+
+	//custom
+	var AddPokemonPopup = this.AddPokemonPopup = Popup.extend({
+		initialize: function (data) {
+			//if (!data || !data.message || typeof data.callback !== "function") return;
+			this.callback = data.callback;
+
+			var buf = '<form>';
+			buf += '<h2> Add a custom pokemon </h2>';
+			buf += '<p><label class="label">' + data.message;
+			buf += '<input class="textbox autofocus" type="text" name="data" value="' + BattleLog.escapeHTML(data.value || '') + '" /></label></p>';
+			buf += '<p class="buttonbar"><button type="submit" class="button"><strong>' + data.button + '</strong></button> <button type="button" name="close" class="button">Cancel</button></p>';
+			buf += '</form>';
+
+			this.$el.html(buf);
+		},
+		submit: function (data) {
+			this.close();
+			this.callback(data.data);
+		}
 	});
 
 	var PromptPopup = this.PromptPopup = Popup.extend({
