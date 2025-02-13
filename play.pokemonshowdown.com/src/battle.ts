@@ -1591,7 +1591,16 @@ export class Battle {
 				weather === "primordialsea";
 			if (poke) {
 				if (ability) {
-					if (toID(ability.name) == "monsoonsurge") {
+					if ([
+						"monsoonsurge",
+						"blizzardveil",
+						"sandstormrage",
+						"solarflare",
+						"eerieresonance",
+						"mindscapedomain",
+						"verdantbloom",
+						"mystichaze"
+					  ].includes(toID(ability.name))) {
 						this.weatherTimeLeft = 10;
 						this.activateAbility(poke, ability.name);
 						this.weather = weather;
