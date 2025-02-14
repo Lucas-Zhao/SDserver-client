@@ -5,14 +5,15 @@ const fs = require("fs");
 const path = require("path");
 const child_process = require("child_process");
 
+const repoName = "ps-custom-mega-server"
 const rootDir = path.resolve(__dirname, "..");
 process.chdir(rootDir);
 
-if (!fs.existsSync("caches/ps-custom-mega-server")) {
+if (!fs.existsSync("caches/" + repoName + "")) {
 	console.log("Cloning server repo");
-	if (!fs.existsSync("caches/ps-custom-mega-server")) {
+	if (!fs.existsSync("caches/" + repoName + "")) {
 		child_process.execSync(
-			"git clone https://github.com/ISenseAura/ps-custom-mega-server.git",
+			"git clone https://github.com/ISenseAura/" + repoName + ".git",
 			{
 				cwd: "caches",
 			}
@@ -22,7 +23,7 @@ if (!fs.existsSync("caches/ps-custom-mega-server")) {
 
 	/*try {
 		fs.renameSync(
-			"caches/ps-custom-mega-server",
+			"caches/" + repoName + "",
 			"caches/pokemon-shwowdown"
 		);
 	} catch (e) {
@@ -31,11 +32,13 @@ if (!fs.existsSync("caches/ps-custom-mega-server")) {
 }
 
 try {
-	let folderPath = "caches/ps-custom-mega-server/data/customs";
-	if (fs.existsSync("caches/ps-custom-mega-server/data/customs")) {
+	let folderPath = "caches/" + repoName + "/data/customs";
+	if (fs.existsSync("caches/" + repoName + "/data/customs")) {
+
+	
 		console.log("DELETE CUSTOMS")
 		fs.rm(
-			"caches/ps-custom-mega-server/data/customs",
+			"caches/" + repoName + "/data/customs",
 			{ recursive: true, force: true },
 			(err) => {
 				if (err) {
@@ -51,16 +54,21 @@ try {
 }
 
 process.stdout.write("Syncing data from Git repository... ");
-child_process.execSync("git fetch origin", { cwd: "caches/ps-custom-mega-server" });
-child_process.execSync("git reset --hard origin/main", { cwd: "caches/ps-custom-mega-server" });
+child_process.execSync("git fetch origin", { cwd: "caches/" + repoName + "" });
+child_process.execSync("git reset --hard origin/main", { cwd: "caches/" + repoName + "" });
 
-child_process.execSync("git pull", { cwd: "caches/ps-custom-mega-server" });
+child_process.execSync("git pull", { cwd: "caches/" + repoName + "" });
 child_process.execSync("npm run build", {
-	cwd: "caches/ps-custom-mega-server",
+	cwd: "caches/" + repoName + "",
 });
+
+if (fs.existsSync("caches/" + repoName + "/data/customs/config/config.js")) {
+	fs.writeFileSync("play.pokemonshowdown.com/data/customs/custom-icons.js", fs.readFileSync("caches/" + repoName + "/data/customs/config/config.js").toString())
+}
+
 console.log("DONE");
 
-const Dex = require("../caches/ps-custom-mega-server/dist/sim/dex").Dex;
+const Dex = require("../caches/" + repoName + "/dist/sim/dex").Dex;
 const toID = Dex.toID;
 process.stdout.write("Loading gen 6 data... ");
 Dex.includeData();
@@ -1781,7 +1789,7 @@ process.stdout.write("Building `data/pokedex.js`... ");
 
 {
 	const Pokedex = requireNoCache(
-		"../caches/ps-custom-mega-server/dist/data/pokedex.js"
+		"../caches/" + repoName + "/dist/data/pokedex.js"
 	).Pokedex;
 	for (const id in Pokedex) {
 		const entry = Pokedex[id];
@@ -1815,7 +1823,7 @@ process.stdout.write(
 
 {
 	const Moves = requireNoCache(
-		"../caches/ps-custom-mega-server/dist/data/moves.js"
+		"../caches/" + repoName + "/dist/data/moves.js"
 	).Moves;
 	for (const id in Moves) {
 		const move = Dex.moves.get(Moves[id].name);
@@ -1837,7 +1845,7 @@ process.stdout.write(
 
 {
 	const Items = requireNoCache(
-		"../caches/ps-custom-mega-server/dist/data/items.js"
+		"../caches/" + repoName + "/dist/data/items.js"
 	).Items;
 	for (const id in Items) {
 		const item = Dex.items.get(Items[id].name);
@@ -1854,7 +1862,7 @@ process.stdout.write(
 
 {
 	const Abilities = requireNoCache(
-		"../caches/ps-custom-mega-server/dist/data/abilities.js"
+		"../caches/" + repoName + "/dist/data/abilities.js"
 	).Abilities;
 	for (const id in Abilities) {
 		const ability = Dex.abilities.get(Abilities[id].name);
@@ -1871,7 +1879,7 @@ process.stdout.write(
 
 {
 	const TypeChart = requireNoCache(
-		"../caches/ps-custom-mega-server/dist/data/typechart.js"
+		"../caches/" + repoName + "/dist/data/typechart.js"
 	).TypeChart;
 	const buf = "exports.BattleTypeChart = " + es3stringify(TypeChart) + ";";
 	fs.writeFileSync("play.pokemonshowdown.com/data/typechart.js", buf);
@@ -1883,7 +1891,7 @@ process.stdout.write(
 
 {
 	const Aliases = requireNoCache(
-		"../caches/ps-custom-mega-server/dist/data/aliases.js"
+		"../caches/" + repoName + "/dist/data/aliases.js"
 	).Aliases;
 	const buf = "exports.BattleAliases = " + es3stringify(Aliases) + ";";
 	fs.writeFileSync("play.pokemonshowdown.com/data/aliases.js", buf);
@@ -1895,7 +1903,7 @@ process.stdout.write(
 
 {
 	const FormatsData = requireNoCache(
-		"../caches/ps-custom-mega-server/dist/data/formats-data.js"
+		"../caches/" + repoName + "/dist/data/formats-data.js"
 	).FormatsData;
 	const buf = "exports.BattleFormatsData = " + es3stringify(FormatsData) + ";";
 	fs.writeFileSync("play.pokemonshowdown.com/data/formats-data.js", buf);
@@ -1907,7 +1915,7 @@ process.stdout.write(
 
 {
 	const Formats = requireNoCache(
-		"../caches/ps-custom-mega-server/dist/config/formats.js"
+		"../caches/" + repoName + "/dist/config/formats.js"
 	).Formats;
 	const buf = "exports.Formats = " + es3stringify(Formats) + ";";
 	fs.writeFileSync("play.pokemonshowdown.com/data/formats.js", buf);
@@ -1919,7 +1927,7 @@ process.stdout.write(
 
 {
 	const Learnsets = requireNoCache(
-		"../caches/ps-custom-mega-server/dist/data/learnsets.js"
+		"../caches/" + repoName + "/dist/data/learnsets.js"
 	).Learnsets;
 	const buf = "exports.BattleLearnsets = " + es3stringify(Learnsets) + ";";
 	fs.writeFileSync("play.pokemonshowdown.com/data/learnsets.js", buf);

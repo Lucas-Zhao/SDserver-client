@@ -205,7 +205,7 @@ try {
 	indexContents2 = indexContents2.replace(/src="\/\/play.pokemonshowdown.com\/config\/config.js\?[a-z0-9]*"/, 'src="//play.pokemonshowdown.com/config/config-test.js?4"');
 } catch (e) {}
 
-fs.writeFileSync('play.pokemonshowdown.com/index.html', indexContents);
+//fs.writeFileSync('play.pokemonshowdown.com/index.html', indexContents);
 if (indexContents2) {
 	fs.writeFileSync('play.pokemonshowdown.com/index-test.html', indexContents2);
 }

@@ -1146,6 +1146,17 @@ class BattleTooltips {
 					if (ability === 'swiftswim') {
 						speedModifiers.push(2);
 					}
+					/*
+					if (ability === 'aquacircuit') {
+						let high = "atk";
+						if(stats.atk < stats.def) high = "def";
+						if(stats.def < stats.spa) high = "spa";
+						if(stats.spa < stats.spd) high = "spd";
+						if(stats.spd < stats.spe) high = "spe";
+
+						stats[high] *= 1.5;
+					}
+						*/
 				}
 			}
 		}
