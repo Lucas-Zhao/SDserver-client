@@ -762,6 +762,7 @@ function toId() {
 				return;
 			}
 
+			
 			var self = this;
 			var constructSocket = function () {
 				if (location.host === 'localhost.psim.us' || /[0-9]+.[0-9]+.[0-9]+.[0-9]+\.psim\.us/.test(location.host)) {
