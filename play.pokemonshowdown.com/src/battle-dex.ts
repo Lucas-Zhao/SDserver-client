@@ -721,7 +721,6 @@ const Dex = new class implements ModdedDex {
 			return `background:transparent url(${Dex.resourcePrefix}sprites/pokemonicons-pokeball-sheet.png) no-repeat scroll -80px 4px`;
 		}
 
-		console.log("THIS WAS CALLED")
 		let id = toID(pokemon);
 		if (!pokemon || typeof pokemon === 'string') pokemon = null;
 		// @ts-ignore
@@ -972,7 +971,6 @@ class ModdedDex {
 	species = {
 		get: (name: string): Species => {
 			let id = toID(name);
-			console.log(id)
 			if (window.BattleAliases && id in BattleAliases) {
 				name = BattleAliases[id];
 				id = toID(name);
@@ -1009,7 +1007,6 @@ class ModdedDex {
 
 			const species = new Species(id, name, data);
 			this.cache.Species[id] = species;
-			console.log("CALLEDD")
 			return species;
 		},
 	};

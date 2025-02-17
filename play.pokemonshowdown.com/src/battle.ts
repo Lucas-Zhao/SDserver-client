@@ -1378,6 +1378,7 @@ export class Battle {
 		}
 	}
 	addPseudoWeather(weather: string, minTimeLeft: number, timeLeft: number) {
+		
 		this.pseudoWeather.push([weather, minTimeLeft, timeLeft]);
 		this.scene.updateWeather();
 	}
@@ -3478,9 +3479,19 @@ export class Battle {
 							continue;
 						}
 					}
+					 
 					if (this.gen > 6) maxTimeLeft = 8;
 				}
 				if (kwArgs.persistent) minTimeLeft += 2;
+				if (["eerieresonance",
+					"mindscapedomain",
+					"verdantbloom",
+					"mystichaze"
+				  ].includes(toID(poke?.ability))) {
+					maxTimeLeft = 10;
+					minTimeLeft = 10;
+				  }
+				//  alert(Object.keys(poke))
 				this.addPseudoWeather(effect.name, minTimeLeft, maxTimeLeft);
 
 				switch (effect.id) {
