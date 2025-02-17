@@ -3,6 +3,7 @@
  */
 
 window.exports = window;
+let apiUrl = "http://localhost:2405"
 
 function linkStyle(url) {
 	var linkEl = document.createElement("link");
@@ -262,7 +263,7 @@ window.onload = function () {
 	if (!replay.id)
 		return (document.getElementById("loading").innerHTML =
 			"This is not the replay link you're looking for..");
-	makePostRequest("http://localhost:3000/getreplay", {
+	makePostRequest(apiUrl + "/getreplay", {
 		replayid: replay.id.trim(),
 	})
 		.then((data) => {
