@@ -330,9 +330,10 @@
 		buf += '<span class="col pokemonnamecol">' + name + '</span> ';
 
 		// error
+		// CUSTOM FORMAT LEGALITY custom format customformat
 		function isLegacyLegal() {
 			var format = room.curTeam.format;
-			if(toID(pokemon.tier) == "legacy" && format.includes("legacy")) return true;
+			if(toID(pokemon.tier) == "hell" && format.includes("hell")) return true;
 			return false;
 		}
 		if (errorMessage && !isLegacyLegal()) {

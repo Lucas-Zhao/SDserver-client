@@ -950,7 +950,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 
 
 		let table = BattleTeambuilderTable;
-		if(format.includes("Legacy")) table = table["Legacy"]
+		if(format.includes("HELL")) table = table["HELL"]
 
 		else if ((format.endsWith('cap') || format.endsWith('caplc')) && dex.gen < 9) {
 			table = table['gen' + dex.gen];
