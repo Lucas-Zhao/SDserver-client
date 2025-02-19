@@ -3,7 +3,7 @@
  */
 
 window.exports = window;
-let apiUrl = "https://sdserver.zapto.org"
+let apiUrl = "https://heroicemolga.serveminecraft.net"
 
 function linkStyle(url) {
 	var linkEl = document.createElement("link");
