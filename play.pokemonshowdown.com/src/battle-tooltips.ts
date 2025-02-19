@@ -1450,7 +1450,7 @@ class BattleTooltips {
 					}
 
 					if (ability === "mysticaura") {
-						this.battle.hasPseudoWeather("Misty Terrain")
+						this.battle.hasPseudoWeather("Misty Terrain");
 
 						let high = "atk"; // Assume "atk" is the highest by default
 						let maxStat = stats.atk; // Store its value
@@ -1468,7 +1468,7 @@ class BattleTooltips {
 					}
 
 					if (ability === "overgrowthengine") {
-						this.battle.hasPseudoWeather("Grassy Terrain")
+						this.battle.hasPseudoWeather("Grassy Terrain");
 
 						let high = "atk"; // Assume "atk" is the highest by default
 						let maxStat = stats.atk; // Store its value
@@ -1486,7 +1486,7 @@ class BattleTooltips {
 					}
 
 					if (ability === "psychicpulse") {
-						this.battle.hasPseudoWeather("Psychic Terrain")
+						this.battle.hasPseudoWeather("Psychic Terrain");
 
 						let high = "atk"; // Assume "atk" is the highest by default
 						let maxStat = stats.atk; // Store its value
@@ -2122,9 +2122,17 @@ class BattleTooltips {
 					if (value.abilityModify(0, "Refrigerate")) moveType = "Ice";
 
 					if (value.abilityModify(0, "Entomize")) moveType = "Bug";
-					if (value.abilityModify(0, "Aerilate")) moveType = "Flying";
-					if (value.abilityModify(0, "Aerilate")) moveType = "Flying";
-					if (value.abilityModify(0, "Aerilate")) moveType = "Flying";
+					if (value.abilityModify(0, "Umbral Force")) moveType = "Dark";
+					if (value.abilityModify(0, "Draconize")) moveType = "Dragon";
+					if (value.abilityModify(0, "Combat Boost")) moveType = "Fighting";
+					if (value.abilityModify(0, "Infernalize")) moveType = "Fire";
+					if (value.abilityModify(0, "Hauntify")) moveType = "Ghost";
+					if (value.abilityModify(0, "Verdant Force")) moveType = "Grass";
+					if (value.abilityModify(0, "Terranize")) moveType = "Ground";
+					if (value.abilityModify(0, "Toxify")) moveType = "Poison";
+					if (value.abilityModify(0, "Petrify")) moveType = "Rock";
+					if (value.abilityModify(0, "Ferronize")) moveType = "Steel";
+					if (value.abilityModify(0, "Aquify")) moveType = "Water";
 				}
 				if (value.abilityModify(0, "Normalize")) moveType = "Normal";
 			}
