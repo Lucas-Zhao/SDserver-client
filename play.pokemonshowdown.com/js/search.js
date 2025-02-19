@@ -333,7 +333,7 @@
 		// CUSTOM FORMAT LEGALITY custom format customformat
 		function isLegacyLegal() {
 			var format = room.curTeam.format;
-			if(toID(pokemon.tier) == "hell" && format.includes("hell")) return true;
+			if(format.includes("hell")) return true;
 			return false;
 		}
 		if (errorMessage && !isLegacyLegal()) {
