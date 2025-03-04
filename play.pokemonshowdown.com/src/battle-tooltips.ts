@@ -1640,6 +1640,11 @@ class BattleTooltips {
 				stats.spe = Math.floor(stats.spe * 0.75);
 			}
 		}
+		if (this.battle.abilityActive("Boots of Ruin")) {
+			if (ability !== "bootsofruin") {
+				stats.spe = Math.floor(stats.spe * 0.75);
+			}
+		}
 		if (this.battle.abilityActive("Tablets of Ruin")) {
 			if (ability !== "tabletsofruin") {
 				stats.atk = Math.floor(stats.atk * 0.75);
