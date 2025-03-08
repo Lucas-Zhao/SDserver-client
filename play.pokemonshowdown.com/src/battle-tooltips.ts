@@ -2138,6 +2138,8 @@ class BattleTooltips {
 					if (value.abilityModify(0, "Petrify")) moveType = "Rock";
 					if (value.abilityModify(0, "Ferronize")) moveType = "Steel";
 					if (value.abilityModify(0, "Aquify")) moveType = "Water";
+					if (value.abilityModify(0, "Psionize")) moveType = "Psychic";
+
 				}
 				if (value.abilityModify(0, "Normalize")) moveType = "Normal";
 			}
