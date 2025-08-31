@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const child_process = require("child_process");
 
-const repoName = "ps-custom-mega-server"
+const repoName = "SDserver"
 const rootDir = path.resolve(__dirname, "..");
 process.chdir(rootDir);
 
@@ -13,7 +13,7 @@ if (!fs.existsSync("caches/" + repoName + "")) {
 	console.log("Cloning server repo");
 	if (!fs.existsSync("caches/" + repoName + "")) {
 		child_process.execSync(
-			"git clone https://github.com/ISenseAura/" + repoName + ".git",
+			"git clone https://github.com/Lucas-Zhao/" + repoName + ".git",
 			{
 				cwd: "caches",
 			}
